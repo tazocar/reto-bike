@@ -1,0 +1,27 @@
+button {
+  background-color: midnightblue;
+  border: none;
+  width: 10%;
+  height: 2em;
+  color: beige;
+  border-radius: 5px;
+}
+
+.circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 150px;
+}
+
+.list {
+  list-style: none;
+  display: inline;
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.right {
+  padding: 5px;
+  margin: 0;
+} 

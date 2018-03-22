@@ -1,0 +1,6 @@
+.map-height{
+  height: 80vh;
+}
+canvas.mapboxgl-canvas{
+  position: relative !important;
+}
