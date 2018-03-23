@@ -1,58 +1,52 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import mapboxgl from 'mapbox-gl'
 import './map.css'
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
 
 var geojson = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "properties": {
-                "message": "Foo",
-                "iconSize": [60, 60]
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -66.324462890625,
-                    -16.024695711685304
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "message": "Bar",
-                "iconSize": [50, 50]
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -61.2158203125,
-                    -15.97189158092897
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "message": "Baz",
-                "iconSize": [40, 40]
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -63.29223632812499,
-                    -18.28151823530889
-                ]
-            }
-        }
-    ]
+   "totems": [{
+           "id": "a9b7b8320e6d794c9629be6615e769cb",
+           "latitude": -33.42382,
+           "longitude": -70.63992,
+           "address": "Av. Peru 805, Santiago,  ",
+           "name": "Av. Peru / Maestra Lidia Torres"
+       },
+       {
+           "id": "a8c8d8215f3da59178f5524ccf2704f8",
+           "latitude": -33.42251,
+           "longitude": -70.64478,
+           "address": "Recoleta 840, Recoleta, Santiago,  ",
+           "name": "Cerro Blanco"
+       },
+       {
+           "id": "2e6ee668edfac10b7b6b926b787109d7",
+           "latitude": -33.42751,
+           "longitude": -70.64655,
+           "address": "Av Recoleta 404, Recoleta ,Santiago,  ",
+           "name": "Clinica Dávila"
+       },
+       {
+           "id": "fb51e02dd820f5cd4f1b8f135aaa2a82",
+           "latitude": -33.43214,
+           "longitude": -70.64846,
+           "address": "Bellavista /Recoleta, Recoleta, Santiago,  ",
+           "name": "Bellavista /Recoleta"
+       },
+       {
+           "id": "75e495fb27717a74f61d54989211ff5d",
+           "latitude": -33.42824,
+           "longitude": -70.65338,
+           "address": "Lastra 1089, Independencia, Santiago,  ",
+           "name": "Av. Independencia  / General de la Lastra"
+       }
+   ]
 };
 
 
 class Application extends Component {
+
+
 
   componentDidMount() {
 
@@ -61,39 +55,54 @@ class Application extends Component {
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/streets-v9',
-      center: [-65.017, -16.457],
-      zoom: 5
+      center: [-70.64212119999999, -33.4188987],
+      zoom: 16
     });
 
-    // add markers to map
-    geojson.features.forEach(function(marker) {
 
-      fetch('https://api.citybik.es/v2/networks/santiago')
-      .then(data => data.json())
-      .then(response => {
-        //console.log(response.network.stations.map(item => console.log('het')))
-        console.log(response.network.stations)
-      })
-        // create a DOM element for the marker
-        var el = document.createElement('div');
-        el.className = 'marker';
-        el.style.backgroundImage = 'url(https://placekitten.com/g/' + marker.properties.iconSize.join('/') + '/)';
-        el.style.width = marker.properties.iconSize[0] + 'px';
-        el.style.height = marker.properties.iconSize[1] + 'px';
+ fetch('https://api.citybik.es/v2/networks/santiago')
+  .then(data => data.json())
+  .then(response => {
+    response.network.stations.forEach(item => {
+     var el = document.createElement('div');
+    var p = document.createElement("p");
+    p.textContent = item.free_bikes;
+    el.appendChild(p);
+    el.className = 'marker';
+    el.style.backgroundColor = 'pink';
+    el.style.textAlign ='center';
+    el.style.borderRadius = '100%';
+    el.style.width = '20px';
+    el.style.height = '20px';
 
-        el.addEventListener('click', function() {
-            window.alert(marker.properties.message);
-        });
 
-        // add marker to map
-        new mapboxgl.Marker(el)
-            .setLngLat(marker.geometry.coordinates)
-            .addTo(map);
-    });
+
+var popup = new mapboxgl.Popup()
+    .setHTML('<div class="container">'+
+      '<div class="row"><img src="../img/bikesantiago.jpg" alt=""></div>'+
+      '<div class="row"><div><h3 class="address">' + item.extra.address + '</h3></div></div>'+
+      '<div class="row"><div class="col-sm-1 col-xs-1"><i class="fas fa-bicycle"></i><p>' + item.free_bikes + '</p></div>'+
+      '<div class="col-sm-1 col-xs-1"><i class="fas fa-bicycle"></i><p>' + item.empty_slots + '</p></div>'+
+      '<div class="col-sm-1 col-xs-1"><i class="fas fa-hand-paper"></i><p>Reservar</p></div>'+
+      '<div class="col-sm-1 col-xs-1"><i class="fas fa-exclamation-circle"></i><p>Alerta</p></div></div></div>');
+
+    // add marker to map
+    new mapboxgl.Marker(el)
+        .setLngLat([item.longitude,item.latitude])
+        .setPopup(popup)
+        .addTo(map);
+
+
+
+    })
+  })
+
+
 
   }
 
   render() {
+
     return (
       <div className="row">
         <div className="col-12">
