@@ -5,6 +5,7 @@ import Application from './Components/Map/index';
 import firebase from 'firebase';
 import Login from './Components/Login';
 import TopMenu from './Components/TopMenu/index'
+import ReportBike from './Components/ReportBike';
 import './App.css';
 
 class App extends Component {
@@ -110,7 +111,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        { this.renderMap() }
+				{ this.renderMap() }
+				<div>
+					<ReportBike />
+				</div>
       </div>
     );
   }
