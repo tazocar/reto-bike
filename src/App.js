@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, NavLink} from 'react-router-dom';
 import Route from 'react-router-dom/Route';
-import Application from './Components/Map/index';
+import Bici from './Components/Map/index';
+import Slots from './Components/Slots/index'
 import firebase from 'firebase';
 import Login from './Components/Login';
 import TopMenu from './Components/TopMenu/index'
@@ -39,7 +40,57 @@ class App extends Component {
     if(this.state.user){
       return(
           <div className="App">
-          <TopMenu />
+
+            <Route path="/" exact strict render={
+              () => {
+                return(
+                  <div>
+                    <TopMenu />
+                    <Bici/>
+                  </div>
+                )
+              }
+            } />
+            <Route path="/profile" exact strict render={
+              () => {
+                return(
+                  <div>
+                    <TopMenu />
+                    <div className="relleno"> Aca va el div del perfil c:</div>
+                  </div>
+                )
+              }
+            } />
+            <Route path="/bikes" exact strict render={
+              () => {
+                return(
+                  <div>
+                    <TopMenu />
+                    <div className="relleno"> Acá cargan las bicis en el mapa c:</div>
+                  </div>
+                )
+              }
+            } />
+            <Route path="/parking" exact strict render={
+              () => {
+                return(
+                  <div>
+                    <TopMenu />
+                    <Slots/>
+                  </div>
+                )
+              }
+            } />
+            <Route path="/report" exact strict render={
+              () => {
+                return(
+                  <div>
+                    <TopMenu />
+                    <ReportBike/>
+                  </div>
+                )
+              }
+            } />*
             <Login
               user={this.state.user}
               onAuth={this.handleAuth}
