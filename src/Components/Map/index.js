@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import mapboxgl from 'mapbox-gl'
-
+import './map.css'
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
 
 var geojson = {
@@ -104,7 +104,11 @@ var popup = new mapboxgl.Popup()
   render() {
 
     return (
-      <div ref={el => this.mapContainer = el} className="absolute top right left bottom" />
+      <div className="row">
+        <div className="col-12">
+          <div ref={el => this.mapContainer = el} className="map-height" />
+        </div>
+      </div>
     );
   }
 }

@@ -1,0 +1,58 @@
+    .ReportBike {
+        color: #FF9A19;
+        font-weight: bold;
+    }
+    
+    .row {
+        margin: 1em;
+    }
+    
+    .input-group-append {
+        font-size: 2em;
+        margin: 0.2em;
+    }
+    
+    .label {
+        text-align: left;
+        padding-left: 0.2em;
+    }
+    
+    .icons {
+        display: flex;
+        text-align: center;
+        font-size: 0.8em;
+    }
+    
+    .fa-circle {
+        font-size: 3em;
+    }
+    
+    a:hover {
+        color: #FFAA33;
+        cursor: pointer;
+    }
+    
+    .fa-camera {
+        font-size: 2em;
+    }
+    
+    .textarea {
+        border: 1px solid #FF9A19;
+    }
+    
+    .form-control {
+        font-size: 1em;
+    }
+    
+    .button {
+        width: 100%;
+        height: 2.5em;
+        text-align: center;
+        background-color: #FF9A19;
+        margin-top: 1em;
+    }
+    
+    .button:hover {
+        background-color: #FFAA33;
+        cursor: pointer;
+    }
