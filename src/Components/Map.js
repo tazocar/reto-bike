@@ -79,7 +79,7 @@ class Application extends Component {
 
 var popup = new mapboxgl.Popup()
     .setHTML('<div class="container">'+
-      '<div class="row"><img src="../img/bikesantiago.jpg" alt="" class="col-sm-12 col-xs-12"></div>'+
+      '<div class="row"><img src="../img/bikesantiago.jpg" alt=""></div>'+
       '<div class="row"><div><h3 class="address">' + item.extra.address + '</h3></div></div>'+
       '<div class="row"><div class="col-sm-1 col-xs-1"><i class="fas fa-bicycle"></i><p>' + item.free_bikes + '</p></div>'+
       '<div class="col-sm-1 col-xs-1"><i class="fas fa-bicycle"></i><p>' + item.empty_slots + '</p></div>'+
