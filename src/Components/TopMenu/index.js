@@ -16,11 +16,6 @@ class TopMap extends Component {
                   <div className="row">
                     <div className="col-12 noPadding">
                       <ul className="menuListStyle d-flex justify-content-around">
-                        <NavLink to="/profile">
-                          <li>
-                            <i className="fas fa-user-circle"></i>
-                          </li>
-                        </NavLink>
                         <NavLink to="/bikes">
                           <li>
                             <i className="fas fa-bicycle"></i>
@@ -50,25 +45,10 @@ class TopMap extends Component {
                 <div>
                   <div className="row">
                     <div className="col-12 noPadding">
-                      <ul className="menuListStyle d-flex justify-content-around">
-                        <NavLink to="/profile">
-                          <li>
-                            <i className="fas fa-user-circle"></i>
-                          </li>
-                        </NavLink>
+                      <ul className="menuListStyle text-left-arrow">
                         <NavLink to="/bikes">
                           <li>
-                            <i className="fas fa-bicycle"></i>
-                          </li>
-                        </NavLink>
-                        <NavLink to="/parking">
-                          <li>
-                            <i className="fas fa-map-marker-alt"></i>
-                          </li>
-                        </NavLink>
-                        <NavLink to="/report">
-                          <li>
-                            <i className="fas fa-wrench"></i>
+                            <i className="fas fa-arrow-left"></i>
                           </li>
                         </NavLink>
                       </ul>
@@ -109,7 +89,7 @@ class TopMap extends Component {
                       </ul>
                     </div>
                   </div>
-                  <div className="relleno"> Acá cargan las bicis en el mapa c:</div>
+                  <Application/>
                 </div>
               )
             }
@@ -144,7 +124,7 @@ class TopMap extends Component {
                       </ul>
                     </div>
                   </div>
-                  <div className="relleno"> Acá cargan los estacionamientos en el mapa c:</div>
+                  <Application/>
                 </div>
               )
             }
