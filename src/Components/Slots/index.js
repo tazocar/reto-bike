@@ -44,7 +44,7 @@ var geojson = {
 };
 
 
-class Bici extends Component {
+class Slots extends Component {
 
 
 
@@ -65,9 +65,9 @@ class Bici extends Component {
   .then(response => {
     response.network.stations.forEach(item => {
      var el = document.createElement('div');
-    var p = document.createElement("p");
-    p.textContent = item.free_bikes;
-    el.appendChild(p);
+    var h1 = document.createElement("h1");
+    h1.textContent = item.empty_slots;
+    el.appendChild(h1);
     el.className = 'marker';
     el.style.width = '20px';
     el.style.height = '20px';
@@ -81,9 +81,9 @@ var popup = new mapboxgl.Popup()
     .setHTML('<div class="container">'+
       '<div class="row"><img src="../img/bikesantiago.jpg" alt=""></div>'+
       '<div class="row"><div><h3 class="address">' + item.extra.address + '</h3></div></div>'+
-      '<div class="row"><div class="icon-cont"><i class="fas fa-bicycle"></i><p class="bici">' + item.free_bikes + ' Bici</p></div>'+
-      '<div class="icon-cont"><i class="fas fa-bicycle"></i><p class="space">' + item.empty_slots + ' Libres</p></div>'+
-      '<div class="icon-cont"><i class="fas fa-exclamation-circle"></i><p class="alerta">0 Alerta</p></div></div></div>');
+      '<div class="row"><div class="col-sm-1 col-xs-1"><i class="fas fa-bicycle"></i><p class="bici">' + item.free_bikes + ' Bici</p></div>'+
+      '<div class="col-sm-1 col-xs-1"><i class="fas fa-bicycle"></i><p class="space">' + item.empty_slots + ' Libres</p></div>'+
+      '<div class="col-sm-1 col-xs-1"><i class="fas fa-exclamation-circle"></i><p class="alert">Alerta</p></div></div></div>');
 
     // add marker to map
     new mapboxgl.Marker(el)
@@ -112,4 +112,4 @@ var popup = new mapboxgl.Popup()
   }
 }
 
-export default Bici;
+export default Slots;

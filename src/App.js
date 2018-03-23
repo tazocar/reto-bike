@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, NavLink} from 'react-router-dom';
 import Route from 'react-router-dom/Route';
-import Application from './Components/Map/index';
+import Bici from './Components/Map/index';
+import Slots from './Components/Slots/index'
 import firebase from 'firebase';
 import Login from './Components/Login';
 import TopMenu from './Components/TopMenu/index'
@@ -45,7 +46,7 @@ class App extends Component {
                 return(
                   <div>
                     <TopMenu />
-                    <Application/>
+                    <Bici/>
                   </div>
                 )
               }
@@ -75,7 +76,7 @@ class App extends Component {
                 return(
                   <div>
                     <TopMenu />
-                    <div className="relleno"> Acá cargan los estacionamientos en el mapa c:</div>
+                    <Slots/>
                   </div>
                 )
               }
@@ -85,7 +86,7 @@ class App extends Component {
                 return(
                   <div>
                     <TopMenu />
-                    <div className="relleno"> Acá va la pantalla de reportar</div>
+                    <ReportBike/>
                   </div>
                 )
               }
