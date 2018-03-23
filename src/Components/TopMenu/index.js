@@ -9,7 +9,8 @@ class TopMap extends Component {
   render() {
     return(
       <Router>
-        <div><Route path="/" exact strict render={
+        <div>
+        <Route path="/" exact strict render={
             () => {
               return(
                 <div>
