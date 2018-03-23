@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, NavLink} from 'react-router-dom';
+import Route from 'react-router-dom/Route';
 import Application from './Components/Map/index';
 import firebase from 'firebase';
 import Login from './Components/Login';
+import TopMenu from './Components/TopMenu/index'
 import './App.css';
 
 class App extends Component {
@@ -34,14 +37,36 @@ class App extends Component {
   renderMap(){
     if(this.state.user){
       return(
-        <div className="App">
-          <Login
-            user={this.state.user}
-            onAuth={this.handleAuth}
-            onLogout={this.handleLogout}
-          />
-          <Application/>
-        </div>
+        <Router>
+          <div className="App">
+            <Route path="/" exact render={
+              () => {
+                return(
+                  <div>
+                    <TopMenu />
+                    <Application/>
+                  </div>
+                )
+              }
+            } />
+            <Route path="/profile" exact render={
+              () => {
+                return(
+                  <div>
+                    <TopMenu />
+                    <div className="relleno">  </div>
+                  </div>
+                )
+              }
+            } />
+            <Login
+              user={this.state.user}
+              onAuth={this.handleAuth}
+              onLogout={this.handleLogout}
+            />
+            
+          </div>
+        </Router>
       );
     }else{
       return(

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import mapboxgl from 'mapbox-gl'
 import './map.css'
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
@@ -66,31 +65,31 @@ class Application extends Component {
       zoom: 5
     });
 
-// add markers to map
-geojson.features.forEach(function(marker) {
+    // add markers to map
+    geojson.features.forEach(function(marker) {
 
-  fetch('https://api.citybik.es/v2/networks/santiago')
-  .then(data => data.json())
-  .then(response => {
-    //console.log(response.network.stations.map(item => console.log('het')))
-    console.log(response.network.stations)
-  })
-    // create a DOM element for the marker
-    var el = document.createElement('div');
-    el.className = 'marker';
-    el.style.backgroundImage = 'url(https://placekitten.com/g/' + marker.properties.iconSize.join('/') + '/)';
-    el.style.width = marker.properties.iconSize[0] + 'px';
-    el.style.height = marker.properties.iconSize[1] + 'px';
+      fetch('https://api.citybik.es/v2/networks/santiago')
+      .then(data => data.json())
+      .then(response => {
+        //console.log(response.network.stations.map(item => console.log('het')))
+        console.log(response.network.stations)
+      })
+        // create a DOM element for the marker
+        var el = document.createElement('div');
+        el.className = 'marker';
+        el.style.backgroundImage = 'url(https://placekitten.com/g/' + marker.properties.iconSize.join('/') + '/)';
+        el.style.width = marker.properties.iconSize[0] + 'px';
+        el.style.height = marker.properties.iconSize[1] + 'px';
 
-    el.addEventListener('click', function() {
-        window.alert(marker.properties.message);
+        el.addEventListener('click', function() {
+            window.alert(marker.properties.message);
+        });
+
+        // add marker to map
+        new mapboxgl.Marker(el)
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
     });
-
-    // add marker to map
-    new mapboxgl.Marker(el)
-        .setLngLat(marker.geometry.coordinates)
-        .addTo(map);
-});
 
   }
 
