@@ -39,8 +39,8 @@ class App extends Component {
   renderMap(){
     if(this.state.user){
       return(
-        <Router>
           <div className="App">
+
             <Route path="/" exact strict render={
               () => {
                 return(
@@ -90,14 +90,13 @@ class App extends Component {
                   </div>
                 )
               }
-            } />
+            } />*
             <Login
               user={this.state.user}
               onAuth={this.handleAuth}
               onLogout={this.handleLogout}
             />
           </div>
-        </Router>
       );
     }else{
       return(
@@ -111,11 +110,8 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
+      <div>
 				{ this.renderMap() }
-				<div>
-					<ReportBike />
-				</div>
       </div>
     );
   }
